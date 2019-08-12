@@ -4,7 +4,7 @@ This project is about creating a host inventory or CMDB (Configuration Managemen
 
 ## Getting Started
 
-First make sure to clone the repository. In the *dev* folder, the user can create a local test environment to test the project. More instructions on how to create this environment can be found in that directory.
+First, make sure to clone the repository. In the *dev* folder, the user can create a local test environment to test the project. More instructions on how to create this environment can be found in that directory.
 
 ## Prerequisites
 
