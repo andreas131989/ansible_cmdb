@@ -1,0 +1,34 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.define "ansible" do |ansible|
+    ansible.vm.box = "centos/7"
+    ansible.vm.network "private_network", ip: "172.28.128.40"
+    ansible.ssh.forward_agent = true
+    ansible.vm.provision "file", source: "./bootstrap.sh", destination: "bootstrap.sh"
+    ansible.vm.provision "file", source: "./hosts", destination: "hosts"
+
+  ansible.trigger.after :up do |trigger|
+    trigger.warn = "Executing bootstrap file"
+    trigger.run_remote = {inline: "sudo ./bootstrap.sh"}
+  end
+
+  ansible.trigger.after :up do |trigger|
+    trigger.warn = "Copying hosts file"
+    trigger.run_remote = {inline: "sudo cp hosts /etc/ansible/hosts"}
+  end
+
+  end
+
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "centos/7"
+    node1.vm.network "private_network", ip: "172.28.128.50"
+    node1.ssh.forward_agent = true
+  end
+
+  config.vm.define "node2" do |node2|
+    node2.vm.box = "ubuntu/xenial64"
+    node2.vm.network "private_network", ip: "172.28.128.60"
+    node2.ssh.forward_agent = true
+  end
+
+end
