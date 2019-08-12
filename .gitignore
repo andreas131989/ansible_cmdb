@@ -1,2 +1,3 @@
 .DS_Store
 dev/.vagrant/*
+dev/ubuntu-xenial-16.04-cloudimg-console.log

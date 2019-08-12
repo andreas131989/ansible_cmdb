@@ -1,3 +1,4 @@
+## For local development purposes, we use static IPs. Therefore, our Ansible hosts file is predetermined. In reality, this file should contain the hosts to gather facts from that are reachable via SSH
 [targets]
 node1 ansible_host=172.28.128.50
 node2 ansible_host=172.28.128.60

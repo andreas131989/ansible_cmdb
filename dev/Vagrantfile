@@ -1,5 +1,9 @@
 Vagrant.configure("2") do |config|
 
+# This file spins up 3 VMs. One destined to be the Ansible contoller and two target hosts (once CentOS and one Ubuntu). Similarly, more target nodes can be added. Note, that with every new node, the hosts file needs to be updated as well accordingly
+# All VMs will have static IP configuration to make it easy to spin up a test environment. Ideally, this should be DHCP. Also, all VMs have ssh forward agent enabled to allow SSH operations between them. 
+
+# In the Ansible VM we copy additionally the bootstrap script and the Ansible hosts file. Eventually we execute the bootstrap script to install the prerequisites on the environment automatically.
   config.vm.define "ansible" do |ansible|
     ansible.vm.box = "centos/7"
     ansible.vm.network "private_network", ip: "172.28.128.40"
@@ -18,6 +22,8 @@ Vagrant.configure("2") do |config|
   end
 
   end
+
+
 
   config.vm.define "node1" do |node1|
     node1.vm.box = "centos/7"
